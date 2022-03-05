@@ -12,7 +12,7 @@ class Program{
             throw new InvalidDataException();
         }
 
-        Extension.printBoard(_board);
+        _board.printBoard();
     }
 
     static void init(){

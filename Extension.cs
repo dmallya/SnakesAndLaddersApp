@@ -5,15 +5,21 @@ namespace SnakesAndLadders;
 class Extension{
 
     private static readonly int _numNodes = 100;
-    private static List<int> breaks;
     public static void generateNodes(Board board){
 
-        for(int i = 0; i < _numNodes; i++){
-            Node node = new(i+1);
+        for(int i = _numNodes; i > 1; i--){
+            Node node = new(i);
+            node.nodeState = Node.NodeState.unoccupied;
             board.allNodes.Add(node);
         }
 
-        Console.WriteLine("----Completed Generating Nodes----");
+        Node startingNode = new(1);
+        startingNode.nodeState = Node.NodeState.occupied;
+        board.allNodes.Add(startingNode);
+
+        Console.WriteLine(board.allNodes.Count);
+
+        Console.WriteLine("----Completed Generating Nodes----\n");
     }
 
     public static void generatePawns(Board board){
@@ -41,21 +47,7 @@ class Extension{
             board.allPawns.Add(pawn);
         }
 
-        Console.WriteLine("----Completed Generating Pawns----");
-    }
-
-    public static void printBoard(Board board){
-
-        breaks = new(){11,21,31,41,51,61,71,81,91};
-
-        foreach(Node node in board.allNodes){
-            if (breaks.Contains(node.nodeNumber)){
-                Console.WriteLine("\n");
-            }
-            Console.Write($"| {node.nodeNumber.ToString("D2")} |");
-        }
-
-        Console.WriteLine("\n----Completed Printing Board----");
+        Console.WriteLine("----Completed Generating Pawns----\n");
     }
 
     public static int rollDie(){
